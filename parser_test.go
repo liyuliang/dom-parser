@@ -14,7 +14,7 @@ func Test_Find_One_Dom(t *testing.T) {
 	}else {
 		text := dom.Find("div").Text()
 		if "1234411111q22222q" != text {
-			t.Error("goquery find div dom ,get all text failed")
+			t.Error("goquery find div node ,get all text failed")
 		}
 
 		href, is_find := dom.Find("a").Attr("href")

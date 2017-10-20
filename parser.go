@@ -5,13 +5,13 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-type parser struct {
-	dom *goquery.Document
+type Dom struct {
+	node *goquery.Document
 }
 
-func InitDom(html string) (*parser, error) {
+func InitDom(html string) (*Dom, error) {
 
-	p := new(parser)
+	p := new(Dom)
 
 	htmlBuf := bytes.NewBufferString(html)
 	dom, err := goquery.NewDocumentFromReader(htmlBuf)
@@ -20,17 +20,17 @@ func InitDom(html string) (*parser, error) {
 		return p, err
 	}
 
-	p.dom = dom
+	p.node = dom
 	return p, nil
 }
 
-func (query *parser) Find(selector string) *goquery.Selection {
-	return query.dom.Find(selector)
+func (d *Dom) Find(selector string) *goquery.Selection {
+	return d.node.Find(selector)
 }
 
-func (query *parser) FindAll(selector string) []*goquery.Selection {
+func (d *Dom) FindAll(selector string) []*goquery.Selection {
 	var doms []*goquery.Selection
-	query.dom.Find(selector).Each(func(i int, s *goquery.Selection) {
+	d.node.Find(selector).Each(func(i int, s *goquery.Selection) {
 		doms = append(doms, s)
 	})
 	return doms
