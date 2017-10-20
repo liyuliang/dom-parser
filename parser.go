@@ -35,6 +35,3 @@ func (query *parser) FindAll(selector string) []*goquery.Selection {
 	})
 	return doms
 }
-
-func (query *parser) Clear() {
-}
